@@ -24,8 +24,14 @@ class UserRouter
                 $r->addRoute('GET', '', function ($r) {
                     UserListController::find($r, AuthHandler::verifyAdminToken()->data);
                 });
+                $r->addRoute('GET', '/balance', function ($r) {
+                    UserListController::balance($r, AuthHandler::verifyAdminToken()->data);
+                });
                 $r->addRoute('PUT', '', function ($r) {
                     UserUpdateController::update($r, AuthHandler::verifyAdminToken()->data);
+                });
+                $r->addRoute('PUT', '/balance', function ($r) {
+                    UserUpdateController::updateBalance($r, AuthHandler::verifyAdminToken()->data);
                 });
                 $r->addRoute('DELETE', '', function ($r) {
                     UserDeleteController::remove($r, AuthHandler::verifyAdminToken()->data);

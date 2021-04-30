@@ -17,8 +17,7 @@ class UserCreateController
         $user = User::create([
             "email" => $data['email'],
             "name" => $data['name'],
-            "birthday" => Manipulador::convertDate($data['birthday']),
-            "balance" => 1000, //valor inicial da abertuda da conta, não foi passado qual seria então coloquei um valor aleatorio
+            "birthday" => $data['birthday'],
         ]);
         try {
             $user->save();

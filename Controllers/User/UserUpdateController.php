@@ -18,7 +18,21 @@ class UserUpdateController
             ->update([
                 "email" => $data['email'],
                 "name" => $data['name'],
-                "birthday" => Manipulador::convertDate($data['birthday']),
+                "birthday" => $data['birthday'],
+            ]);
+        if ($user) {
+            Returns::msgData(MessageSuccessGlobal::USER_UPDATED);
+        } else {
+            Returns::simpleMsgError(MessageErrorGlobal::USER_NOT_FOUND);
+        }
+    }
+
+    static function updateBalance($route)
+    {
+        $balance =  floatval($_POST['balance']);
+        $user = User::where('id', $route[2]['id'])
+            ->update([
+                "balance" => $balance
             ]);
         if ($user) {
             Returns::msgData(MessageSuccessGlobal::USER_UPDATED);

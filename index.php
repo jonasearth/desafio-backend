@@ -18,33 +18,14 @@ header('Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 
 
 
-if (!strcasecmp($_SERVER['REQUEST_METHOD'], 'DELETE')) {
-    header('Content-type:application/json');
-    $json = json_decode(file_get_contents('php://input'));
-    if ($json != null) {
-        foreach ($json as $key => $value) {
-            @$_POST[$key] = $value;
-        }
+header('Content-type:application/json');
+$json = json_decode(file_get_contents('php://input'));
+if ($json != null) {
+    foreach ($json as $key => $value) {
+        @$_POST[$key] = $value;
     }
 }
-if (!strcasecmp($_SERVER['REQUEST_METHOD'], 'PUT')) {
-    header('Content-type:application/json');
-    $json = json_decode(file_get_contents('php://input'));
-    if ($json != null) {
-        foreach ($json as $key => $value) {
-            @$_POST[$key] = $value;
-        }
-    }
-}
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    header('Content-type:application/json');
-    $json = json_decode(file_get_contents('php://input'));
-    if ($json != null) {
-        foreach ($json as $key => $value) {
-            @$_POST[$key] = $value;
-        }
-    }
-}
+
 
 
 //carrega o FastRoute

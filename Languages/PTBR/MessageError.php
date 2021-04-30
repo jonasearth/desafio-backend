@@ -27,6 +27,8 @@ class MessageError
   const USER_EMAIL_ALREADY_EXIST = "O email informado já está registrado!";
   const USER_EMAIL_INVALID = "O email informado tem um formato inválido!";
   const USER_NOT_FOUND = "Usuario não encontrado!";
+  const USER_AGE_ERROR = "Usuario precisa ser de maior!";
+  const USER_NOT_DELETE_BALANCE_ERROR = "O usuario não pode ser excluido com balanço diferente de 0 ou com movimentações!";
 
 
   /**

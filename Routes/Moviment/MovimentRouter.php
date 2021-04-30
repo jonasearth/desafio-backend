@@ -20,11 +20,18 @@ class MovimentRouter
                 MovimentCreateController::save($r, AuthHandler::verifyAdminToken()->data);
             });
             $r->addGroup('/{id:\d+}', function (\FastRoute\RouteCollector $r) {
-                $r->addRoute('GET', '', function ($r) {
-                    // MovimentListController::find($r, AuthHandler::verifyAdminToken()->data);
-                });
                 $r->addRoute('DELETE', '', function ($r) {
-                    //  MovimentDeleteController::remove($r, AuthHandler::verifyAdminToken()->data);
+                    MovimentDeleteController::remove($r, AuthHandler::verifyAdminToken()->data);
+                });
+            });
+            $r->addGroup('/user', function (\FastRoute\RouteCollector $r) {
+                $r->addGroup('/{idUser:\d+}', function (\FastRoute\RouteCollector $r) {
+                    $r->addRoute('GET', '', function ($r) {
+                        MovimentListController::byUser($r, AuthHandler::verifyAdminToken()->data);
+                    });
+                    $r->addRoute('GET', '/report', function ($r) {
+                        MovimentListController::report($r/*, AuthHandler::verifyAdminToken()->data*/);
+                    });
                 });
             });
         });
