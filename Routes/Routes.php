@@ -5,6 +5,7 @@ namespace Fnatic\Routes;
 use Fnatic\Tools\Returns;
 
 use Fnatic\Routes\Admin\AdminRouter;
+use Fnatic\Routes\Moviment\MovimentRouter;
 use Fnatic\Routes\User\UserRouter;
 use Fnatic\Routes\Tests\TestsRouter;
 
@@ -36,6 +37,7 @@ class Routes
             $r->addGroup('/v1', function (\FastRoute\RouteCollector $r) {
                 AdminRouter::start($r);
                 UserRouter::start($r);
+                MovimentRouter::start($r);
             });
         });
     }

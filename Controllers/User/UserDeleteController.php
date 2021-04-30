@@ -11,11 +11,12 @@ class UserDeleteController
 {
     public static function remove($route)
     {
-        UserConditionsController::save($route);
+        UserConditionsController::delete($route);
         $user = User::where('id', $route[2]['id'])->delete();
         if ($user) {
             Returns::msgData(MessageSuccessGlobal::USER_DELETED, []);
         } else {
+            http_response_code(404);
             Returns::simpleMsgError(MessageErrorGlobal::DELETE_ERROR);
         }
     }

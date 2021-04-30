@@ -24,4 +24,11 @@ class MessageSuccess
     const USER_CREATED = "Usuario criado com sucesso!";
     const USER_UPDATED = "Usuario atualizado com sucesso!";
     const USER_DELETED = "Usuario deletado com sucesso!";
+
+    /**
+     * Mensagens Moviment
+     */
+
+    const MOVIMENT_CREATED = "Movimentação criada com sucesso!";
+    const MOVIMENT_DELETED = "Movimentação deletada com sucesso!";
 }
