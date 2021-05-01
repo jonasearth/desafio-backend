@@ -10,6 +10,10 @@ use Fnatic\Languages\MessageSuccessGlobal;
 
 class UserUpdateController
 {
+    /**
+     * Atualiza os dados do usuario
+     * @return void
+     */
     static function update($route)
     {
 
@@ -26,10 +30,13 @@ class UserUpdateController
             Returns::simpleMsgError(MessageErrorGlobal::USER_NOT_FOUND);
         }
     }
-
+    /**
+     * Atualiza o saldo do usuario
+     * @return void
+     */
     static function updateBalance($route)
     {
-        $balance =  floatval($_POST['balance']);
+        $balance = floatval($_POST['balance']);
         $user = User::where('id', $route[2]['id'])
             ->update([
                 "balance" => $balance

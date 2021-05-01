@@ -9,9 +9,12 @@ use Fnatic\Tools\Returns;
 
 class MovimentDeleteController
 {
+    /**
+     * Remove uma movimentação 
+     * @return void
+     */
     public static function remove($route)
     {
-        MovimentConditionsController::delete($route);
         $moviment = Moviment::where('id', $route[2]['id'])->delete();
         if ($moviment) {
             Returns::msgData(MessageSuccessGlobal::MOVIMENT_DELETED, []);

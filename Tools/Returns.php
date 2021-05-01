@@ -7,12 +7,12 @@ class Returns
 
 
 
-    public static function simpleMsgError($msg)
+    public static function simpleMsgError($msg, $data = [])
     {
         $data = [
             "message" => $msg,
             "error" => true,
-            "data" => []
+            "data" => $data
         ];
         self::jsonSend($data);
     }

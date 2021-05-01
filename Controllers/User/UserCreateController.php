@@ -11,6 +11,10 @@ use Fnatic\Tools\Manipulador;
 
 class UserCreateController
 {
+    /**
+     * Cria um novo usuario
+     * @return void
+     */
     public static function save()
     {
         $data = UserConditionsController::save($_POST);

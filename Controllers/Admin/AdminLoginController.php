@@ -12,6 +12,11 @@ use Fnatic\Services\Auth\AuthHandler;
 
 class AdminLoginController
 {
+
+    /**
+     * Verifica se as credenciais conferem
+     * @return void
+     */
     static function login()
     {
         $admin =  Admin::where(function ($query) {

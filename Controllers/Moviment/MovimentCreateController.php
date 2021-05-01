@@ -11,6 +11,10 @@ use Fnatic\Controllers\Moviment\MovimentConditionsController;
 
 class MovimentCreateController
 {
+    /**
+     * Adiciona uma nova movimentação a um usuario
+     * @return void
+     * */
     public static function save()
     {
         $data = MovimentConditionsController::save($_POST);

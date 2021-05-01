@@ -35,8 +35,11 @@ class Routes
 
         $r->addGroup('/api', function (\FastRoute\RouteCollector $r) {
             $r->addGroup('/v1', function (\FastRoute\RouteCollector $r) {
+                //iniciando rotas de login
                 AdminRouter::start($r);
+                //iniciando rotas de usuarios
                 UserRouter::start($r);
+                //iniciando rotas de movimentações
                 MovimentRouter::start($r);
             });
         });
@@ -45,7 +48,7 @@ class Routes
     /**
      * getParam function
      * metodo para pegar a url e o metodo da requisição
-     * @return void
+     * @return array
      */
     public static function getParam()
     {

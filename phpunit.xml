@@ -1,0 +1,12 @@
+<phpunit bootstrap="Config/Config.php"
+            colors="true"
+            verbose="true"
+            stopOnFailure="false"
+            processIsolation="false"
+            >
+        <testsuites>
+            <testsuite name="Primeiro exemplo">
+                <directory>tests</directory>
+            </testsuite>
+        </testsuites>
+    </phpunit>

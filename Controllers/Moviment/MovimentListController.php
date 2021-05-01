@@ -16,16 +16,17 @@ use Fnatic\Tools\Manipulador;
 
 class MovimentListController
 {
+
     public static function byUser($route)
     {
         $data = (object) [];
         $user = self::byUserObj($route[2]['idUser']);
-
+        //verifica se o usuario existe
         if (!$user->id) {
-
             http_response_code(404);
             Returns::simpleMsgError(MessageErrorGlobal::USER_NOT_FOUND);
         }
+
         $pagination = MovimentUtilsController::getPaginationOffsetLimit();
         $moviments = Moviment::where('idUser', '=', $user->id)->skip($pagination[0])->take($pagination[1])->get();
         $data->user = $user;
@@ -33,21 +34,29 @@ class MovimentListController
         Returns::msgData(MessageSuccessGlobal::RESULT_FOUND, $data);
     }
 
+    /**
+     * Obtem os Movimentos de um usuario
+     * @return Object
+     */
     public static function byUserObj($id)
     {
         return UserListController::findObj($id);
     }
 
+    /**
+     * verifica os dados de entrada e acina os metodos para construção do csv
+     * @return void
+     */
     public static function report($route)
     {
 
         $user = UserListController::findObj($route[2]['idUser']);
 
         if (!$user->id) {
-
             http_response_code(404);
             Returns::simpleMsgError(MessageErrorGlobal::USER_NOT_FOUND);
         }
+
 
         if ($_POST['lastMonth'] === true) {
             $data = self::getLastMonthReport($route[2]['idUser']);
@@ -61,10 +70,15 @@ class MovimentListController
             MovimentUtilsController::sendCsvFile($data, $user);
         } catch (Error $e) {
             http_response_code(404);
+
             Returns::simpleMsgError(MessageErrorGlobal::NOT_RESULT_FOUND);
         }
     }
 
+    /**
+     * Obtem os movimentos do ultimo mês
+     * @return array
+     */
     public static function getLastMonthReport($id)
     {
         $nowDate = date("Y-m-d");
@@ -73,7 +87,10 @@ class MovimentListController
         $nowDate = date("Y-m-d", strtotime($nowDate) + (1 * 24 * 60 * 60));
         return Moviment::where('idUser', '=', $id)->whereBetween("created_at", [$startDate, $nowDate])->get();
     }
-
+    /**
+     * Obtem os movimentos de um mês especifico
+     * @return array
+     */
     public static function getByMonthReport($id, $date)
     {
         $date = explode("/", $date);

@@ -38,3 +38,23 @@ ini_set("display_errors", 1);
 const URL_SITE = "";
 const URL_NOTIFY_PAYMENT_PAG_SEGURO = "";
 */
+
+use Illuminate\Database\Capsule\Manager as Capsule;
+
+$capsule = new Capsule;
+
+$capsule->addConnection([
+    'driver'    => 'mysql',
+    'host'      => 'localhost',
+    'database'  => 'processo',
+    'username'  => 'root',
+    'password'  => '',
+    'charset'   => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix'    => '',
+]);
+
+
+$capsule->setAsGlobal();
+
+$capsule->bootEloquent();

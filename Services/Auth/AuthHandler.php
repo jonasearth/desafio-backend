@@ -10,6 +10,12 @@ class AuthHandler implements IAuthHandler
 {
     private const SECRET_ADMIN = "JKSJKS";
 
+    /**
+     * @auth JWT token
+     * 
+     * @return token:String
+     * função para criação do token
+     */
     static function createAdminToken($admin): string
     {
         $issuer_claim = "FNATIC"; // this can be the servername
@@ -25,8 +31,15 @@ class AuthHandler implements IAuthHandler
         );
         return JWT::encode($token, self::SECRET_ADMIN);
     }
+    /**
+     * 
+     * 
+     * @return admin:Object
+     * verifica se o token é valido
+     */
     static function verifyAdminToken()
     {
+        // obtem o token do head do request
         $jwt = explode(" ", apache_request_headers()['Authorization']);
 
         if ($jwt[1]) {

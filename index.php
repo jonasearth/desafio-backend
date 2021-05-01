@@ -38,25 +38,7 @@ require_once './config/config.php';
 
 use Fnatic\Routes\Routes;
 //inicializado FastRoute
-use Illuminate\Database\Capsule\Manager as Capsule;
 
-$capsule = new Capsule;
-
-$capsule->addConnection([
-    'driver'    => 'mysql',
-    'host'      => 'localhost',
-    'database'  => 'processo',
-    'username'  => 'root',
-    'password'  => '',
-    'charset'   => 'utf8',
-    'collation' => 'utf8_unicode_ci',
-    'prefix'    => '',
-]);
-
-
-$capsule->setAsGlobal();
-
-$capsule->bootEloquent();
 
 
 $dispatcher = \FastRoute\simpleDispatcher(function (

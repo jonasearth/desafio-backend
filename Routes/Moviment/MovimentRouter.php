@@ -13,9 +13,7 @@ class MovimentRouter
     public static function start($r)
     {
         $r->addGroup('/moviment', function (\FastRoute\RouteCollector $r) {
-            $r->addRoute('GET', '', function ($r) {
-                //MovimentListController::all($r, AuthHandler::verifyAdminToken()->data);
-            });
+
             $r->addRoute('POST', '', function ($r) {
                 MovimentCreateController::save($r, AuthHandler::verifyAdminToken()->data);
             });
@@ -30,7 +28,7 @@ class MovimentRouter
                         MovimentListController::byUser($r, AuthHandler::verifyAdminToken()->data);
                     });
                     $r->addRoute('GET', '/report', function ($r) {
-                        MovimentListController::report($r/*, AuthHandler::verifyAdminToken()->data*/);
+                        MovimentListController::report($r, AuthHandler::verifyAdminToken()->data);
                     });
                 });
             });

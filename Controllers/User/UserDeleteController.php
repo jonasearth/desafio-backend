@@ -9,6 +9,10 @@ use Fnatic\Tools\Returns;
 
 class UserDeleteController
 {
+    /**
+     * Deleta um usuario pelo seu id
+     * @return void
+     */
     public static function remove($route)
     {
         UserConditionsController::delete($route);
